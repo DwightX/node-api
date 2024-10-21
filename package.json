@@ -1,0 +1,26 @@
+{
+  "name": "restify_api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.2",
+    "mongoose-timestamp": "^0.6.0",
+    "prisma": "^5.21.1",
+    "restify": "^11.1.0",
+    "restify-errors": "^8.0.2",
+    "restify-jwt-community": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
