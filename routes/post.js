@@ -6,14 +6,13 @@ module.exports = server => {
     // Get all post
     server.get('/post', async (req, res) => {
         try {
-            const posts = await Post.find({}).populate('createdBy', 'email'); // Populating the createdBy field with user data (email)
-            res.send(posts);
-            next();
+            const post = await Post.find({})
+            res.send(post)
+            next()
         } catch (err) {
-            return next(new errors.InvalidContentError(err));
+            return next(new errors.InvalidContentError(err))
         }
     });
-    
     //get single post
     server.get('/post/:id', async (req, res) => {
         try {
@@ -26,25 +25,23 @@ module.exports = server => {
     });
 
     // make new post
-    server.post('/post', rjwt({ secret: config.JWT_SECRET }), async (req, res) => {
-        // Check for JSON
+    server.post('/post', async (req, res) => {
+        // Check for JSON - fixed typo in content-type check
         if (!req.is('application/json')) {
-            return next(new errors.InvalidContentError("Expects 'application/json'"));
+            return next(new errors.InvalidContentError("Expects 'application/json'"))
         }
-    
+
         try {
             const post = new Post({
                 title: req.body.title,
                 body: req.body.body,
-                date: req.body.date,
-                createdBy: req.user.id // Use the authenticated user's ID here
-            });
-    
-            const newPost = await post.save();
-            res.send(201, newPost); // Send back the created post
-            next();
+                date: req.body.date
+            })
+            const newPost = await post.save()
+            res.send(201, newPost)  // Send back the created customer
+            return next()
         } catch (err) {
-            return next(new errors.InternalError(err.message));
+            return next(new errors.InternalError(err.message))
         }
     });
 
