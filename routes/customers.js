@@ -1,4 +1,4 @@
- const errors = require('restify-errors')
+const errors = require('restify-errors')
 const Customer = require('../models/Customer')
 
 module.exports = server => {
