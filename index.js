@@ -11,7 +11,7 @@ const server = restify.createServer({
 
 // CORS middleware
 const cors = corsMiddleware({
-  origins: process.env.NODE_ENV === 'production' ? ['https://blogger-dc.netlify.app/'] : ['http://localhost:8080'],
+  origins: process.env.NODE_ENV === 'production' ? ['https://blogger-dc.netlify.app'] : ['http://localhost:8080'],
   allowHeaders: ['Authorization'],
   exposeHeaders: ['Authorization'],
   credentials: true,
