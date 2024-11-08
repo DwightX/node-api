@@ -13,6 +13,16 @@ module.exports = server => {
             return next(new errors.InvalidContentError(err))
         }
     });
+    //get single post
+    server.get('/post/:id', async (req, res) => {
+        try {
+            const post = await Post.findById(req.params.id)
+            res.send(post)
+            next()
+        } catch (err) {
+            return next(new errors.ResourceNotFoundError(`No customer with the id of ${req.params.id    }`))
+        }
+    });
 
     // make new post
     server.post('/post', async (req, res) => {
